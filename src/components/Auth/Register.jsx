@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import login from '../../assets/regis.png'
 import { useState } from 'react';
 import { getNotify } from '../../hooks/notify';
+import { useRegister } from '../../hooks/users/useUsers';
 
 const style = {
     position: 'absolute',
@@ -26,11 +27,15 @@ export default function Register() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [aye, setAye] = useState(false)
+    const mutationRegister = useRegister();
 
     const [registerData, setRegisterdata] = useState({
         email: "",
-        name: "",
+        username: "",
+        firstname: "",
+        lastname: "",
         password: "",
+        role: "user"
     })
 
     const onchange = (e) => {
@@ -41,9 +46,8 @@ export default function Register() {
     const handleSumbit = (e) => {
         e.preventDefault();
         if (registerData?.password.length >= 6) {
-            console.log(registerData)
-            notify('ok',"Ro'yhatdan o'tish mofaqqiyatli")
-            setRegisterdata({ ...registerData, email: "", name: "", password: '' })
+            mutationRegister.mutate(registerData)
+            setRegisterdata({ ...registerData, email: "", username: "", password: '', firstname: '', lastname: "" })
         }
         else notify('err', 'parol kamida 6 ta belgidan koproq bolishi kerak')
     }
@@ -66,12 +70,20 @@ export default function Register() {
                                 <h2>Ro'yxatdan o'tish</h2>
                                 <p>Ro'yxatdan o'ting va uz kurslaringizni joylang</p>
                                 <label>
-                                    <span>Email manzil</span>
-                                    <input name='email' onChange={onchange} required type="email" placeholder='email manzil kiriting' value={registerData?.email} />
+                                    <span>Email</span>
+                                    <input name='email' onChange={onchange} required type="email" placeholder=' email manzil kiriting' value={registerData?.email} />
+                                </label>
+                                <label>
+                                    <span>Ism</span>
+                                    <input name='firstname' onChange={onchange} required type="text" placeholder='Ismingizni kiriting' value={registerData?.firstname} />
+                                </label>
+                                <label>
+                                    <span>Familiya</span>
+                                    <input name='lastname' onChange={onchange} required type="text" placeholder='Familiyangizni kiriting' value={registerData?.lastname} />
                                 </label>
                                 <label>
                                     <span>Foydalanuvchi nomi</span>
-                                    <input name='name' onChange={onchange} required type="text" placeholder='Foydalanuvchi nomi' value={registerData?.name} />
+                                    <input name='username' onChange={onchange} required type="text" placeholder='Foydalanuvchi nomi' value={registerData?.username} />
                                 </label>
                                 <label>
                                     <span>Parol</span>

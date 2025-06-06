@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Custommodal, Custommodalitem } from './style';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import login from '../../assets/login.png'
 import { useState } from 'react';
 import { getNotify } from '../../hooks/notify';
+import { useLogin } from '../../hooks/users/useUsers';
 
 const style = {
     position: 'absolute',
@@ -28,8 +27,10 @@ export default function Login() {
     const handleClose = () => setOpen(false);
     const [aye, setAye] = useState(false)
 
+    const mutationLogin = useLogin()
+
     const [loginData, setLoginData] = useState({
-        name: "",
+        username: "",
         password: "",
     })
 
@@ -41,14 +42,12 @@ export default function Login() {
     const handleSumbit = (e) => {
         e.preventDefault();
         if (loginData?.password.length >= 6) {
-            console.log(loginData)
-            notify('ok','Kirish mofaqqiyatli')
-            setLoginData({ ...loginData, name: "", password: '' })
+            mutationLogin.mutate(loginData)
+            // notify('ok', 'Kirish mofaqqiyatli')
+            setLoginData({ ...loginData, username: "", password: '' })
         }
         else notify('err', `parol kamida 6 ta belgidan ko'proq bolishi kerak`)
-
     }
-
 
     return (
         <>
@@ -69,7 +68,7 @@ export default function Login() {
                                 <p>Tizimga kirish bilan foydalanishni osonlashtiring</p>
                                 <label>
                                     <span>Foydalanuvchi nomi</span>
-                                    <input name='name' onChange={onchange} required type="text" placeholder='Foydalanuvchi nomi' value={loginData?.name} />
+                                    <input name='username' onChange={onchange} required type="text" placeholder='Foydalanuvchi nomi' value={loginData?.username} />
                                 </label>
                                 <label>
                                     <span>Parol</span>

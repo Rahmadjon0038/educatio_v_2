@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const Custommodal = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    /* grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); */
+    grid-template-columns: repeat(2,1fr);
+
     gap: 20px;
 `
 export const Custommodalitem = styled.div`
@@ -22,6 +24,9 @@ export const Custommodalitem = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+    @media(max-width:1024px){
+     
     }
     form h2{
         text-align: center;
