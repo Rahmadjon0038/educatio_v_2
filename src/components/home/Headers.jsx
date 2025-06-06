@@ -1,17 +1,53 @@
-import { Bgmodal, Container, ContainerItem, OurSucces, OurSuccesitem1, OurSuccesitem2, Title } from "./homestyle"
+import {
+  Bgmodal,
+  Container,
+  ContainerItem,
+  OurSucces,
+  OurSuccesitem1,
+  OurSuccesitem2,
+  Title
+} from "./homestyle";
 import CountUp from 'react-countup';
-import homeImg from '../../assets/test.png'
-import { toast } from "react-toastify";
+import { useInView } from 'react-intersection-observer';
+import homeImg from '../../assets/test.png';
 import { getNotify } from "../../hooks/notify";
+
+const TotalItem = ({ end, label, suffix }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5
+  });
+
+  return (
+    <div className="total" ref={ref}>
+      <h1>
+        {inView ? (
+          <CountUp end={end} duration={2} separator="," suffix={suffix || "+"} />
+        ) : (
+          "0"
+        )}
+      </h1>
+      <p>{label}</p>
+    </div>
+  );
+};
+
 export default function HomeHeader() {
-  const notify = getNotify()
+  const notify = getNotify();
+
   return (
     <>
       <Container>
-        <Bgmodal></Bgmodal>
+        <Bgmodal />
         <ContainerItem>
-          <Title><span onClick={() => notify('ok','salom bro')}>Taraqqiyot</span> o'quv markaziga xush kelibsiz</Title>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et possimus eum quia, neque ipsam nihil laudantium, perspiciatis dolores aut enim porro commodi asperiores necessitatibus sunt. Numquam architecto ipsum voluptatibus cum?</p>
+          <Title>
+            <span onClick={() => notify('ok', 'salom bro')}>Taraqqiyot</span> o'quv markaziga xush kelibsiz
+          </Title>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et possimus eum quia, neque ipsam nihil
+            laudantium, perspiciatis dolores aut enim porro commodi asperiores necessitatibus sunt. Numquam architecto
+            ipsum voluptatibus cum?
+          </p>
           <button>Bizga qo'shiling</button>
         </ContainerItem>
         <ContainerItem>
@@ -30,43 +66,13 @@ export default function HomeHeader() {
         </OurSuccesitem1>
 
         <OurSuccesitem2>
-          <div className="total">
-            <h1>
-              <CountUp end={1600} duration={2} separator="," />+
-            </h1>
-            <p>O‘quvchilar</p>
-          </div>
-
-          <div className="total">
-            <h1>
-              <CountUp end={1450} duration={2} separator="," />+
-            </h1>
-            <p>Muvaffaqiyatli bitiruvchilar</p>
-          </div>
-
-          <div className="total">
-            <h1>
-              <CountUp end={25} duration={2} separator="," />+
-            </h1>
-            <p>Kurs yo‘nalishlari</p>
-          </div>
-
-          <div className="total">
-            <h1>
-              <CountUp end={20} duration={2} separator="," />+
-            </h1>
-            <p>Tajribali ustozlar</p>
-          </div>
-
-          <div className="total">
-            <h1>
-              <CountUp end={5} duration={2} separator="," /> yil
-            </h1>
-            <p>Ta’lim tajribasi</p>
-          </div>
+          <TotalItem end={1600} label="O‘quvchilar" />
+          <TotalItem end={1450} label="Muvaffaqiyatli bitiruvchilar" />
+          <TotalItem end={25} label="Kurs yo‘nalishlari" />
+          <TotalItem end={20} label="Tajribali ustozlar" />
+          <TotalItem end={5} label="Ta’lim tajribasi" suffix=" yil" />
         </OurSuccesitem2>
       </OurSucces>
-
     </>
-  )
+  );
 }

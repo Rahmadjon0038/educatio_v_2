@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const queryclinet = new  QueryClient();
 
+const queryclinet = new  QueryClient();
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryclinet}>
