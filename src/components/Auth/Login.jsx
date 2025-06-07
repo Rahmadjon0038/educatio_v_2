@@ -7,6 +7,8 @@ import login from '../../assets/login.png'
 import { useState } from 'react';
 import { getNotify } from '../../hooks/notify';
 import { useLogin } from '../../hooks/users/useUsers';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/roleContext';
 
 const style = {
     position: 'absolute',
@@ -15,9 +17,9 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: '70%',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
-    p: 2,
+    borderRadius:'10px',
+    p: 1,
 };
 
 export default function Login() {
@@ -26,6 +28,8 @@ export default function Login() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [aye, setAye] = useState(false)
+
+    const navigate = useNavigate();
 
     const mutationLogin = useLogin()
 
@@ -38,17 +42,23 @@ export default function Login() {
         let { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value })
     }
+    const { role, setRole } = useUser()
 
     const handleSumbit = (e) => {
         e.preventDefault();
         if (loginData?.password.length >= 6) {
-            mutationLogin.mutate(loginData)
+            mutationLogin.mutate(loginData, {
+                onSuccess: (data) => {
+                    // navigate('/tichers')
+                    setRole(data.role)
+                    setOpen(false)
+                }
+            })
             // notify('ok', 'Kirish mofaqqiyatli')
             setLoginData({ ...loginData, username: "", password: '' })
         }
         else notify('err', `parol kamida 6 ta belgidan ko'proq bolishi kerak`)
     }
-
     return (
         <>
             <button onClick={handleOpen} className='btn'>Kirish</button>

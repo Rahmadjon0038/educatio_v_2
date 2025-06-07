@@ -1,6 +1,6 @@
 import { instance } from "../api"
 import Cookies from "js-cookie";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { getNotify } from "../notify";
 const notify = getNotify()
 // ------------------Login -------------------
@@ -13,10 +13,14 @@ const login = async (data) => {
 export const useLogin = () => {
     const mutationLogin = useMutation({
         mutationFn: login,
-        onSuccess: (data) => {
-            console.log(data, 'test')
+        onSuccess: (data, vars) => {
             Cookies.set('token', data.token)
+            Cookies.set('userid', data.id)
+            Cookies.set('role', data.role)
             notify('ok', data.message)
+            if (vars.onSuccess) {
+                vars.onSuccess(data)
+            }
         },
         onError: (err) => {
             console.log(err, 'xatolik')
@@ -39,7 +43,6 @@ export const useRegister = () => {
     const mutationRegister = useMutation({
         mutationFn: register,
         onSuccess: (data) => {
-            console.log(data, 'test')
             notify('ok', data.message)
         },
         onError: (err) => {
@@ -49,4 +52,41 @@ export const useRegister = () => {
     })
     return mutationRegister
 }
-// -----
+// -----   GET USER ----------------------
+
+const getUser = async (id) => {
+    const response = await instance.get(`/api/users/${id}`)
+    return response.data
+}
+
+export const useGetuser = (id) => {
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['user', id],
+        queryFn: () => getUser(id)
+    })
+    return { data, isLoading, error }
+}
+
+// ------------------ UPDATE USERS ----------------------
+
+const updateUser = async (data) => {
+    let { id, userUpdate } = data
+    console.log(id)
+    console.log(userUpdate)
+    const response = await instance.patch(`/api/users/${id}`, userUpdate)
+    return response.data
+}
+
+export const useUpdateUser = () => {
+    const updateMuattion = useMutation({
+        mutationFn: updateUser,
+        onSuccess: (data) => {
+            console.log(data)
+        },
+        onError: (err) => {
+            console.log(err)
+        }
+    })
+
+    return updateMuattion
+}
