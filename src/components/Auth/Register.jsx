@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Custommodal, Custommodalitem } from './style';
@@ -8,6 +7,7 @@ import login from '../../assets/regis.png'
 import { useState } from 'react';
 import { getNotify } from '../../hooks/notify';
 import { useRegister } from '../../hooks/users/useUsers';
+import { useUser } from '../../context/roleContext';
 
 const style = {
     position: 'absolute',
@@ -22,6 +22,8 @@ const style = {
 };
 
 export default function Register() {
+
+    const { role, setRole, setOpen: setloginOpen } = useUser()
     const notify = getNotify()
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -46,7 +48,13 @@ export default function Register() {
     const handleSumbit = (e) => {
         e.preventDefault();
         if (registerData?.password.length >= 6) {
-            mutationRegister.mutate(registerData)
+            mutationRegister.mutate(registerData, {
+                onSuccess: (data) => {
+                    console.log(data)
+                    handleClose()
+                    setloginOpen(true)
+                }
+            })
             setRegisterdata({ ...registerData, email: "", username: "", password: '', firstname: '', lastname: "" })
         }
         else notify('err', 'parol kamida 6 ta belgidan koproq bolishi kerak')

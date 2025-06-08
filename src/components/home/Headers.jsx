@@ -39,9 +39,9 @@ export default function HomeHeader() {
     <>
       <Container>
         <Bgmodal />
-        <ContainerItem>
+        <ContainerItem data-aos='fade-right' data-aos-duration='300'>
           <Title>
-            <span onClick={() => notify('ok', 'salom bro')}>Taraqqiyot</span> o'quv markaziga xush kelibsiz
+            <span>Taraqqiyot</span> o'quv markaziga xush kelibsiz
           </Title>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et possimus eum quia, neque ipsam nihil
@@ -50,7 +50,7 @@ export default function HomeHeader() {
           </p>
           <button>Bizga qo'shiling</button>
         </ContainerItem>
-        <ContainerItem>
+        <ContainerItem data-aos='fade-left' data-aos-duration='400'>
           <img src={homeImg} alt="home img" />
         </ContainerItem>
       </Container>

@@ -18,13 +18,15 @@ const style = {
     width: '70%',
     bgcolor: 'background.paper',
     boxShadow: 24,
-    borderRadius:'10px',
+    borderRadius: '10px',
     p: 1,
 };
 
 export default function Login() {
+    const { role, setRole, open, setOpen } = useUser()
     const notify = getNotify()
-    const [open, setOpen] = useState(false);
+
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [aye, setAye] = useState(false)
@@ -42,7 +44,6 @@ export default function Login() {
         let { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value })
     }
-    const { role, setRole } = useUser()
 
     const handleSumbit = (e) => {
         e.preventDefault();

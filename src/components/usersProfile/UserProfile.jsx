@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import avatar from '../../assets/avatar.png'
-import { Container, CreateAt, CustomInput, Glass, ImgContainer, ModalContent, UserInfo, UserInfoContainer } from './style'
+import { Container, CreateAt, CustomInput, File, Glass, ImgContainer, Logoutbtn, ModalContent, UserInfo, UserInfoContainer } from './style'
 import { FaAngleDown } from "react-icons/fa";
 import { Box, Modal } from '@mui/material';
 import Loader from '../loader/Loader';
-import { useGetuser, useUpdateUser } from '../../hooks/users/useUsers';
+import { useGetuser, useUpdateUser, useUpdateUserAvatar } from '../../hooks/users/useUsers';
 import Cookies from 'js-cookie'
-
+import { useUser } from '../../context/roleContext';
+import { MdDriveFileRenameOutline } from "react-icons/md";
 function UserProfile() {
+    const { role, setRole } = useUser()
+    console.log(role, 'profile');
+
     const [edit, setEdit] = useState(true)
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -52,11 +56,26 @@ function UserProfile() {
         updateMuattion.mutate({ id, userUpdate })
     }
 
+    const updateMuattionAvatar = useUpdateUserAvatar()
+    const handleChange = (e) => {
+        const file = e.target.files[0];
+        const formdata = new FormData()
+        formdata.append('avatar', file)
+        updateMuattionAvatar.mutate({ id, formdata })
+    }
+
+    const logout = () => {
+        Cookies.remove('role')
+        Cookies.remove('token');
+        Cookies.remove('userid')
+        setRole('guest')
+    }
+
 
     return (
         <Container>
             <ImgContainer onClick={handleOpen}>
-                <img src={avatar} alt="avatar" />
+                <img src={data?.avatar ? `http://localhost:5000/${data.avatar}` : avatar} alt="avatar" />
                 <p>{data?.username}</p>
                 <FaAngleDown />
             </ImgContainer>
@@ -72,7 +91,12 @@ function UserProfile() {
                             <ModalContent>
                                 <div className='profileimg'>
                                     <div className='info'>
-                                        <img src={avatar} alt="avatar" />
+                                        <File >
+                                            <img src={data?.avatar ? `http://localhost:5000/${data.avatar}` : avatar} alt="avatar" />
+                                            <input type="file" onChange={handleChange} />
+                                            <MdDriveFileRenameOutline className='renameicon'/>
+                                        </File>
+
                                         <div className="infotext">
                                             <h2>{data?.firstname} {data?.lastname}</h2>
                                             <p>{data?.email}</p>
@@ -112,6 +136,7 @@ function UserProfile() {
                                     </UserInfo>
                                 </UserInfoContainer>
                                 <CreateAt>Yaratildi {data.createdAt.slice(0, data.createdAt.indexOf('T'))}</CreateAt>
+                                <Logoutbtn onClick={logout}>Accountdan Chiqish</Logoutbtn>
                             </ModalContent>
                         </>
                     }

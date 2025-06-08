@@ -8,9 +8,8 @@ import UserProfile from '../usersProfile/UserProfile'
 
 
 function Navbar() {
-    const { role ,setRole} = useUser()
-    console.log('context',role)
-
+    const { role, setRole } = useUser()
+    console.log(role,'nav')
     return (
         <NavContainer>
             <Logo>
@@ -27,7 +26,7 @@ function Navbar() {
                         <Register />
                     </div>
                     :
-                    <UserProfile/>
+                    <UserProfile />
                 }
             </Navigate>
         </NavContainer>

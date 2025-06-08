@@ -26,6 +26,8 @@ function Root() {
     setRole(cookieRole)
   }, [setRole])
 
+  console.log(role)
+  
   const showNavbar = role === 'guest' || role === 'user'
 
   return (
@@ -43,6 +45,7 @@ function Root() {
 
         {role === 'ticher' && (
           <>
+            <Route path='/home' element={<Navigate to='/' />} />
             <Route path='/' element={<Navigate to='/tichers' />} />
             <Route path='/tichers' element={<Tichers />} />
           </>

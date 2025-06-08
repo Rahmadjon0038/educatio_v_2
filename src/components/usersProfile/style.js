@@ -10,6 +10,7 @@ export const ImgContainer = styled.div`
         cursor: pointer;
   img{
         width: 48px;
+        height: 48px;
         object-fit: cover;
         border: 1px solid;
         border-radius: 50%;
@@ -85,9 +86,9 @@ export const UserInfo = styled.div`
     color: rgb(128, 128, 128);
   }
 `
-export const CreateAt =  styled.p`
+export const CreateAt = styled.p`
   margin: 20px 10px;
-  color: rgb(71, 69, 69);;
+  color: rgb(71, 69, 69);
 `
 export const CustomInput = styled.input`
   width: 100%;
@@ -97,5 +98,34 @@ export const CustomInput = styled.input`
     outline: none;
     border-radius: 4px;
     border: 1px solid rgb(44, 111, 236);
+`
 
+
+export const Logoutbtn = styled.button`
+  padding: 8px 20px;
+  color: white;
+  background:red;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+`
+export const File = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  input{
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .renameicon{
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    font-size: 20px;
+    color:rgb(71, 69, 69);
+    
+  }
 `

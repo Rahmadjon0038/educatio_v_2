@@ -1,6 +1,6 @@
 import { instance } from "../api"
 import Cookies from "js-cookie";
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getNotify } from "../notify";
 const notify = getNotify()
 // ------------------Login -------------------
@@ -42,8 +42,12 @@ const register = async (data) => {
 export const useRegister = () => {
     const mutationRegister = useMutation({
         mutationFn: register,
-        onSuccess: (data) => {
+        onSuccess: (data, vars) => {
             notify('ok', data.message)
+            console.log('test')
+            if (vars.onSuccess) {
+                vars.onSuccess(data)
+            }
         },
         onError: (err) => {
             console.log(err, 'xatolik')
@@ -77,11 +81,14 @@ const updateUser = async (data) => {
     return response.data
 }
 
-export const useUpdateUser = () => {
+export const useUpdateUser = (id) => {
+    const queryclinet = useQueryClient();
     const updateMuattion = useMutation({
         mutationFn: updateUser,
         onSuccess: (data) => {
             console.log(data)
+            notify('ok', data.message)
+            queryclinet.invalidateQueries(['user', id]);
         },
         onError: (err) => {
             console.log(err)
@@ -90,3 +97,29 @@ export const useUpdateUser = () => {
 
     return updateMuattion
 }
+
+const updateUserAvatar = async (data) => {
+    let { id, formdata } = data
+    console.log(formdata)
+    const response = await instance.patch(`/api/users/${id}`, formdata)
+    return response.data
+}
+
+export const useUpdateUserAvatar = (id) => {
+    const queryclinet = useQueryClient();
+    const updateMuattionAvatar = useMutation({
+        mutationFn: updateUserAvatar,
+        onSuccess: (data) => {
+            console.log(data)
+            notify('ok', data.message)
+            queryclinet.invalidateQueries(['user', id]);
+        },
+        onError: (err) => {
+            console.log(err)
+        }
+    })
+
+    return updateMuattionAvatar
+}
+
+
