@@ -33,7 +33,6 @@ const TotalItem = ({ end, label, suffix }) => {
 };
 
 export default function HomeHeader() {
-  const notify = getNotify();
 
   return (
     <>

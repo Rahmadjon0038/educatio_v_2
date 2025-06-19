@@ -12,8 +12,9 @@ export const ImgContainer = styled.div`
         width: 48px;
         height: 48px;
         object-fit: cover;
-        border: 1px solid;
+        border: 1px solid white;
         border-radius: 50%;
+        background-color: rgb(240, 248, 255);
     }
 `
 export const Glass = styled.div`
@@ -118,6 +119,12 @@ export const File = styled.div`
     position: absolute;
     cursor: pointer;
     opacity: 0;
+  }
+  img{
+    width: 90px;
+    height: 94px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .renameicon{

@@ -12,6 +12,7 @@ import About from '../pages/About'
 import Courses from '../pages/Courses'
 import Tichers from '../pages/Tichers'
 import { useUser } from '../context/roleContext'
+import Footer from '../components/footer/Footer'
 
 function Root() {
   const { role, setRole } = useUser()
@@ -27,7 +28,7 @@ function Root() {
   }, [setRole])
 
   console.log(role)
-  
+
   const showNavbar = role === 'guest' || role === 'user'
 
   return (
@@ -62,6 +63,7 @@ function Root() {
 
         <Route path='*' element={<NotFound />} />
       </Routes>
+      {showNavbar && <Footer />}
     </>
   )
 }

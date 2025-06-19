@@ -11,8 +11,7 @@ const Container = styled.div`
     align-items: center;
 `
 export const Bgmodal = styled.div`
-    background-color:rgb(73, 187, 189);
-    
+    background-color:#812333;
     width: 100%;
     height: 100%;
     top: 0;
@@ -83,7 +82,7 @@ export const OurSuccesitem2 = styled.div`
     color: blue;
     font-size: 48px;
     font-weight: 200;
-    background:linear-gradient(to right,rgb(24, 115, 182),rgb(66, 176, 188)) ;
+    background:linear-gradient(to right,rgb(129, 35, 51),rgb(212, 0, 35)) ;
     -webkit-background-clip:text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 3px;
@@ -92,6 +91,9 @@ export const OurSuccesitem2 = styled.div`
     font-size: 18px;
     color: rgb(52, 55, 67);
    }
+
+
+   
 `
 
 

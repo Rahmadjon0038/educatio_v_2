@@ -44,7 +44,7 @@ export const Custommodalitem = styled.div`
         margin-top: 10px;
         font-size: 18px;
         border-radius: 30px;
-        border: 1px solid rgb(73, 187, 189);
+        border: 1px solid rgb(129, 35, 51);
         outline: none;
     }
     form input:focus{
@@ -56,7 +56,7 @@ export const Custommodalitem = styled.div`
         padding: 10px 50px;
         border: none;
         border-radius: 30px;
-        background-color: rgb(73, 187, 189);
+        background-color: rgb(129, 35, 51);
         color: aliceblue;
      }
       form button:hover{

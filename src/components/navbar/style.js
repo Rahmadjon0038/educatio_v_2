@@ -5,7 +5,7 @@ export const NavContainer = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
-  background-color:rgb(73, 187, 189);
+  background-color:#812333;
   z-index: 1000;
   color: white;
   position: fixed;
@@ -16,11 +16,9 @@ export const NavContainer = styled.nav`
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
 
   h1{
     font-size: 30px;
-    transform: translateX(-55px);
   }
   .cube{
     border: 3px solid #00FFF0;
@@ -28,6 +26,9 @@ export const Logo = styled.div`
     border-radius: 7px;
     height: 54px;
     transform: rotate(45deg);
+  }
+  img{
+    width: 100px;
   }
 `
 export const Navigate = styled.div`
@@ -56,7 +57,7 @@ export const Navigate = styled.div`
 }
 .btn:hover{
   cursor: pointer;
-  background-color: rgb(126, 205, 206);
+  background-color: rgb(184, 83, 100);
   color: #FFFFFF;
 }
 

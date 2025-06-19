@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import { Custommodal, Custommodalitem } from './style';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import login from '../../assets/regis.png'
+import login from '../../assets/regis.jpg'
 import { useState } from 'react';
 import { getNotify } from '../../hooks/notify';
 import { useRegister } from '../../hooks/users/useUsers';
@@ -18,7 +18,6 @@ const style = {
     bgcolor: 'background.paper',
     borderRadius: '10px',
     boxShadow: 24,
-    p: 1,
 };
 
 export default function Register() {
