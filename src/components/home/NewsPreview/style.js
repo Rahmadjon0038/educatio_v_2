@@ -18,7 +18,6 @@ export const Title = styled.h2`
 `;
 
 export const NewsGrid = styled.div`
-border: 1px solid red;
 display: grid;
 grid-template-columns: repeat(2,1fr);
 gap: 100px;
@@ -35,8 +34,8 @@ export const NewsCard = styled.div`
   margin-top: 20px;
 
   .imgBox{
-    width: 30%;
-    height: 120px;
+    width: 25%;
+    height: 100px;
   }
 `;
 
@@ -59,10 +58,10 @@ export const DateText = styled.p`
 `;
 
 export const NewsTitle = styled.h3`
-  font-size: 18px;
   font-weight: 600;
   color: #222;
   margin-bottom: 10px;
+  font-size: 16px;
 `;
 
 export const Summary = styled.p`
@@ -84,3 +83,14 @@ export const Button = styled.a`
     background-color: #661b29;
   }
 `;
+
+export const SelectedNews = styled.div`
+  padding: 20px;
+  img{
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 20px;
+    height: 50%;
+    object-fit: cover;
+  }
+`

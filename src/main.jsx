@@ -14,7 +14,8 @@ createRoot(document.getElementById('root')).render(
     <UserProvider>
       <QueryClientProvider client={queryclinet}>
         <BrowserRouter>
-          <ToastContainer />
+
+          <ToastContainer position="bottom-right" />
           <Root />
         </BrowserRouter>
       </QueryClientProvider>

@@ -8,9 +8,13 @@ import { useGetuser, useUpdateUser, useUpdateUserAvatar } from '../../hooks/user
 import Cookies from 'js-cookie'
 import { useUser } from '../../context/roleContext';
 import { MdDriveFileRenameOutline } from "react-icons/md";
+import MiniLoader from '../loader/miniLoader/MiniLoader';
+import { FaUserSlash } from 'react-icons/fa';
+
 function UserProfile() {
+    const id = Cookies.get('userid');
+
     const { role, setRole } = useUser()
-    console.log(role, 'profile');
 
     const [edit, setEdit] = useState(true)
     const [open, setOpen] = useState(false);
@@ -20,7 +24,6 @@ function UserProfile() {
     };
     const handleClose = () => setOpen(false);
 
-    const id = Cookies.get('userid')
 
     const style = {
         position: 'absolute',
@@ -36,32 +39,39 @@ function UserProfile() {
         overflow: "hidden"
     };
 
-    const { data, isLoading, error } = useGetuser(id);
-    if (error) {
-        return <h1>Token yaroqsiz</h1>
-    }
-    const updateMuattion = useUpdateUser()
+    const { data, isLoading, error } = useGetuser(id ?? null); // null bersang, yuqoridagi `enabled` uni bloklaydi
+
+
+
+    const updateMuattion = useUpdateUser(id)
     const [userUpdate, setUserUpdate] = useState({
         firstname: "",
         lastname: "",
         username: "",
     });
+
     const onchange = (e) => {
         let { name, value } = e.target;
         setUserUpdate({ ...userUpdate, [name]: value })
     }
 
     const saveUpdate = () => {
-        setEdit(!edit)
-        updateMuattion.mutate({ id, userUpdate })
+        updateMuattion.mutate({ id, userUpdate });
+        setEdit(true);
     }
 
+    const [avatarLoading, setAvatarLoading] = useState(false)
     const updateMuattionAvatar = useUpdateUserAvatar()
     const handleChange = (e) => {
+        setAvatarLoading(true)
         const file = e.target.files[0];
         const formdata = new FormData()
         formdata.append('avatar', file)
-        updateMuattionAvatar.mutate({ id, formdata })
+        updateMuattionAvatar.mutate({
+            id, formdata, onSuccess: (data) => {
+                setAvatarLoading(false)
+            }
+        })
     }
 
     const logout = () => {
@@ -71,11 +81,20 @@ function UserProfile() {
         setRole('guest')
     }
 
+    if (isLoading) {
+        return <MiniLoader />
+    }
+    if (error) {
+        return (
+            <FaUserSlash size={30} />
+        );
+    }
+    if (!data) return null;
 
     return (
         <Container>
             <ImgContainer onClick={handleOpen}>
-                <img src={data?.avatar ? `http://localhost:5000/${data.avatar}` : avatar} alt="avatar" />
+                <img src={data?.avatar ? data?.avatar : avatar} alt="avatar" />
                 <p>{data?.username}</p>
                 <FaAngleDown />
             </ImgContainer>
@@ -92,9 +111,16 @@ function UserProfile() {
                                 <div className='profileimg'>
                                     <div className='info'>
                                         <File >
-                                            <img src={data?.avatar ? `http://localhost:5000/${data.avatar}` : avatar} alt="avatar" />
+                                            {avatarLoading ? <div style={{ position: 'relative', display: 'inline-block' }}>
+                                                <img src={data?.avatar || avatar} alt="avatar" />
+                                                {avatarLoading && <MiniLoader className="absolute" />}
+                                            </div>
+
+
+                                                : <img src={data?.avatar ? data.avatar : avatar} alt="avatar" />}
+
                                             <input type="file" onChange={handleChange} />
-                                            <MdDriveFileRenameOutline className='renameicon'/>
+                                            <MdDriveFileRenameOutline className='renameicon' />
                                         </File>
 
                                         <div className="infotext">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Title, NewsGrid, NewsCard, Image, Info, DateText, NewsTitle, Summary, Button } from "./style";
+import { Container, Title, NewsGrid, NewsCard, Image, Info, DateText, NewsTitle, Summary, Button, SelectedNews } from "./style";
 
 
 import image from '../../../assets/regis.jpg'
@@ -33,20 +33,20 @@ const newsData = [
     image: "https://img.freepik.com/free-photo/digital-art-graphic-designer-using-pen-tablet-editing-photo-computer_53876-122784.jpg",
     summary: "Professional dizayner ishtirokida master-klass o‘tkazilib, ishtirokchilar amaliy bilimga ega bo‘lishdi.",
   },
-  {
-    id: 5,
-    title: "IT bo‘yicha mentorlik dasturi boshlandi",
-    date: "28-may 2025",
-    image: image,
-    summary: "Yangi mentorlik dasturi orqali o‘quvchilar soha mutaxassislari bilan ishlay boshlashdi.",
-  },
-  {
-    id: 6,
-    title: "Online test tizimi ishga tushirildi",
-    date: "25-may 2025",
-    image: image,
-    summary: "O‘quvchilar bilimini sinovdan o‘tkazish uchun yangi test platformasi faoliyat boshladi.",
-  }
+  // {
+  //   id: 5,
+  //   title: "IT bo‘yicha mentorlik dasturi boshlandi",
+  //   date: "28-may 2025",
+  //   image: image,
+  //   summary: "Yangi mentorlik dasturi orqali o‘quvchilar soha mutaxassislari bilan ishlay boshlashdi.",
+  // },
+  // {
+  //   id: 6,
+  //   title: "Online test tizimi ishga tushirildi",
+  //   date: "25-may 2025",
+  //   image: image,
+  //   summary: "O‘quvchilar bilimini sinovdan o‘tkazish uchun yangi test platformasi faoliyat boshladi.",
+  // }
 ];
 
 
@@ -60,19 +60,26 @@ const NewsPreview = () => {
     summary: "Frontend kursimizni 30+ o‘quvchi muvaffaqiyatli yakunlab, diplomlarini olishdi.",
   },)
 
+  const handleSelect = (select) => {
+    setSelected(select)
+  }
+
 
   return (
     <Container>
       <Title>So‘nggi yangiliklar</Title>
       <NewsGrid>
-        <div>
-          {/* <img src={select?.img} alt="" /> */}
-          <h3>{select?.title}</h3>
-
-        </div>
+        <SelectedNews>
+          <img src={select?.image} alt="sa" />
+          <Info>
+            <DateText>{select?.date}</DateText>
+            <NewsTitle>{select?.title}</NewsTitle>
+            <Summary>{select?.summary}</Summary>
+          </Info>
+        </SelectedNews>
         <div>
           {newsData.map(({ id, title, date, image, summary }) => (
-            <NewsCard key={id}>
+            <NewsCard key={id} onClick={() => handleSelect({ id, title, date, image, summary })}>
               <div className="imgBox">
                 <Image src={image} alt={title} />
               </div>

@@ -64,9 +64,11 @@ const getUser = async (id) => {
 }
 
 export const useGetuser = (id) => {
+    const enabled = !!id; // faqat id mavjud bo‘lsa query ishlaydi
     const { data, isLoading, error } = useQuery({
         queryKey: ['user', id],
-        queryFn: () => getUser(id)
+        queryFn: () => getUser(id),
+        enabled,
     })
     return { data, isLoading, error }
 }
@@ -97,21 +99,28 @@ export const useUpdateUser = (id) => {
 
     return updateMuattion
 }
-
 const updateUserAvatar = async (data) => {
-    let { id, formdata } = data
-    console.log(formdata)
-    const response = await instance.patch(`/api/users/${id}`, formdata)
-    return response.data
+    let { id, formdata } = data;
+
+    const response = await instance.patch(`/api/users/${id}`, formdata, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    });
+
+    return response.data;
 }
+
 
 export const useUpdateUserAvatar = (id) => {
     const queryclinet = useQueryClient();
     const updateMuattionAvatar = useMutation({
         mutationFn: updateUserAvatar,
-        onSuccess: (data) => {
-            console.log(data)
+        onSuccess: (data,vars) => {
             notify('ok', data.message)
+            if(vars.onSuccess){
+                vars.onSuccess(data)
+            }
             queryclinet.invalidateQueries(['user', id]);
         },
         onError: (err) => {

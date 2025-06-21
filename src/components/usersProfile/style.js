@@ -100,8 +100,6 @@ export const CustomInput = styled.input`
     border-radius: 4px;
     border: 1px solid rgb(44, 111, 236);
 `
-
-
 export const Logoutbtn = styled.button`
   padding: 8px 20px;
   color: white;
@@ -118,6 +116,10 @@ export const File = styled.div`
   input{
     position: absolute;
     cursor: pointer;
+    position: absolute;
+    left: 30px;
+    bottom: -5px;
+    z-index: 100;
     opacity: 0;
   }
   img{
