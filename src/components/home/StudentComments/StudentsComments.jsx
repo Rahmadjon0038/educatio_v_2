@@ -49,9 +49,9 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <Container id="testimonials">
+    <Container  id="testimonials">
       <Title>Talabalarimiz fikrlari</Title>
-      <CardWrapper>
+      <CardWrapper >
         {testimonials.map(({ id, name, image, comment, bgcolor }) => (
           <Card key={id} bgcolor={bgcolor}>
             <h1>‘‘</h1>

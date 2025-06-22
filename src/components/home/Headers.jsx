@@ -10,7 +10,6 @@ import {
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import homeImg from '../../assets/test.png';
-import { getNotify } from "../../hooks/notify";
 
 const TotalItem = ({ end, label, suffix }) => {
   const { ref, inView } = useInView({
@@ -56,8 +55,8 @@ export default function HomeHeader() {
 
       <OurSucces>
         <OurSuccesitem1>
-          <h1>Bizning Yutuqlarimiz</h1>
-          <p>
+          <h1 data-aos="fade-up">Bizning Yutuqlarimiz</h1>
+          <p  data-aos="fade-up">
             Taraqqiyot o‘quv markazi sifatli ta’lim, zamonaviy metodika va tajribali
             o‘qituvchilari bilan o‘quvchilarning rivojlanishiga ulkan hissa qo‘shib
             kelmoqda. Har bir o‘quvchining muvaffaqiyati — bu bizning yutug‘imiz.

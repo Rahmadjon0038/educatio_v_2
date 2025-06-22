@@ -19,64 +19,50 @@ export const Info = styled.div`
 `;
 
 export const Cards = styled.div`
-  margin-top: 100px;
-  padding: 10px;
+  display: flex;
+  margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3,1fr);
   gap: 30px;
+
 `;
 
 export const Card = styled.div`
-  box-shadow: 0 0 10px silver;
-  padding: 10px;
-  border-radius: 8px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  transition: 0.5s;
-
-  
-  img {
-      width: 100%;
-      height: 55%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    .card-item{
-        border: 1px solid red;
-  }
-
-  h2 {
-    color: rgb(47, 50, 125);
-    margin-top: 16px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  &:hover {
-    transform: translateY(-10px); // Hover bo‘lganda ko‘tariladi
-  }
-
-  button {
-    background: linear-gradient(to right, rgb(129, 35, 51), rgb(212, 0, 35));
-    color: white;
-    width: 100%;
-    padding: 16px;
-    margin: auto 0px 0px 0px;
+    border: 2px solid #812333;
     border-radius: 8px;
+    box-shadow: 0 8px 0px  #812333;
+    overflow: hidden;
+  
+
+  .imgcard{
+    height: 200px;
+    overflow: hidden;
+    img{
+      transition:.3s;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+  .data{
+    padding: 10px;
+
+  }
+  .data p{
+    line-height: 24px;
+  }
+
+  .data button{
+    margin-top: 10px;
+    padding: 6px 30px;
+    background: linear-gradient(135deg, #6a1d28, #8c2b3c);
+    color: white;
+    border-radius: 4px;
     border: none;
-    font-size: 16px;
-
-    &:hover {
-      background-color: rgb(166, 46, 66); // Tugma ustiga olib borilganda rangi o‘zgaradi
-      cursor: pointer;
-    }
-
-    &:active {
-      transform: scale(0.9); // Bosilganda kichrayadi (feedback uchun)
-    }
+    cursor: pointer;
   }
 `;
 

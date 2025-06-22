@@ -1,5 +1,7 @@
 import { Card, Cards, Info, Wrapper } from './style';
 import image from '../../../assets/regis.jpg'
+import MagneticHover from '../../MagneticHover';
+
 function Direction() {
     const cardsData = [
         {
@@ -60,14 +62,20 @@ function Direction() {
 
             <Cards>
                 {cardsData.map((item) => (
-                    <Card data-aos="fade-up" key={item.id}>
-                        <img src={item?.image} alt="image" />
-                        <h2>{item.title}</h2>
-                        <p>{item.desc}</p>
-                        <button>{item.button}</button>
+                    <Card  key={item.id}>
+                        <div className="imgcard">
+                            <img src={item?.image} alt="image" />
+                        </div>
+                        <div className='data'>
+                            <h2>{item.title}</h2>
+                            <p>{item.desc}</p>
+                            <button>Batafsil</button>
+                        </div>
                     </Card>
+                
                 ))}
             </Cards>
+        
         </Wrapper>
     );
 }

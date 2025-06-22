@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const NotFoundContainer = styled.div`
   min-height: 100vh;
-  background-color: rgb(73, 187, 189);
+  background-color: #812333;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ const NotFoundText = styled.p`
 const HomeButton = styled(Link)`
   margin-top: 40px;
   background-color: white;
-  color: rgb(73, 187, 189);
+  color: #812333;
   padding: 14px 28px;
   border-radius: 30px;
   font-size: 18px;

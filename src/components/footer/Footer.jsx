@@ -1,37 +1,37 @@
-import React from "react";
-import { Container, Content, Logo, Links, LinkColumn, LinkTitle, StyledLink, SocialIcons, Icon, Copyright } from "./style";
-
+import { Container, Logo, Copyright, Content, Content_items } from "./style";
+import { MdPlace } from "react-icons/md";
+import logo from '../../assets/logo.png'
+import { FaPhoneVolume } from "react-icons/fa";
 const Footer = () => {
   return (
     <Container>
+      <Logo>
+        <img src={logo} alt="logo" />
+        Taraqqiyot
+      </Logo>
       <Content>
-        <Logo>Taraqqiyot</Logo>
+        <Content_items>
+          <div className="item">
+            <MdPlace className="icon" />
+            <div>
+              <h4>Namangan</h4>
+              <p>Otchopar tegen market ro'parasi</p>
+            </div>
 
-        <Links>
-          <LinkColumn>
-            <LinkTitle>Tezkor havolalar</LinkTitle>
-            <StyledLink href="/">Asosiy</StyledLink>
-            <StyledLink href="/courses">Yo‘nalishlar</StyledLink>
-            <StyledLink href="/news">Blog</StyledLink>
-            <StyledLink href="/contact">Aloqa</StyledLink>
-          </LinkColumn>
+          </div>
+          <div className="item">
+            <FaPhoneVolume className="icon" />
+            <h4>+99897 212 00 38</h4>
+          </div>
+          <div>
 
-          <LinkColumn>
-            <LinkTitle>Ijtimoiy tarmoqlar</LinkTitle>
-            <SocialIcons>
-              <Icon href="https://t.me/taraqqiyot" target="_blank">
-                <i className="fab fa-telegram-plane" />
-              </Icon>
-              <Icon href="https://instagram.com/taraqqiyot" target="_blank">
-                <i className="fab fa-instagram" />
-              </Icon>
-              <Icon href="https://youtube.com/@taraqqiyot" target="_blank">
-                <i className="fab fa-youtube" />
-              </Icon>
-            </SocialIcons>
-          </LinkColumn>
-        </Links>
+          </div>
+        </Content_items>
+
+        <Content_items>Ishtimoiy tarmoqlar</Content_items>
       </Content>
+
+
       <Copyright>
         © 2025 Taraqqiyot o‘quv markazi. Barcha huquqlar himoyalangan.
       </Copyright>

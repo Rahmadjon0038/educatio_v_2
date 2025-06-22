@@ -11,7 +11,10 @@ export const NavContainer = styled.nav`
   position: fixed;
   width: 100%;
   max-width: 1920px;
-
+  .homenav{
+    text-decoration: none;
+    color: white;
+  }
 `
 export const Logo = styled.div`
   display: flex;

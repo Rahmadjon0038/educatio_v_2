@@ -95,6 +95,23 @@ export const OurSuccesitem2 = styled.div`
 
    
 `
+export const ShineText = styled.p`
+  background: linear-gradient(90deg, #ff4e00, #ec9f05, #ff4e00);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+`
+
 
 
 
