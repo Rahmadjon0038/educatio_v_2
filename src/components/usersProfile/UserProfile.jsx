@@ -39,9 +39,8 @@ function UserProfile() {
         overflow: "hidden"
     };
 
-    const { data, isLoading, error } = useGetuser(id ?? null); // null bersang, yuqoridagi `enabled` uni bloklaydi
-
-
+    const { data, isLoading, error } = useGetuser(id ?? null);
+    const customWepgImg = data?.avatar.replace('/upload', "/upload/f_webp,q_auto")
 
     const updateMuattion = useUpdateUser(id)
     const [userUpdate, setUserUpdate] = useState({
@@ -94,10 +93,11 @@ function UserProfile() {
     return (
         <Container>
             <ImgContainer onClick={handleOpen}>
-                <img src={data?.avatar ? data?.avatar : avatar} alt="avatar" />
+                <img src={customWepgImg || avatar} alt="avatar" />
                 <p>{data?.username}</p>
                 <FaAngleDown />
             </ImgContainer>
+
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -110,18 +110,19 @@ function UserProfile() {
                             <ModalContent>
                                 <div className='profileimg'>
                                     <div className='info'>
-                                        <File >
-                                            {avatarLoading ? <div style={{ position: 'relative', display: 'inline-block' }}>
-                                                <img src={data?.avatar || avatar} alt="avatar" />
-                                                {avatarLoading && <MiniLoader className="absolute" />}
-                                            </div>
-
-
-                                                : <img src={data?.avatar ? data.avatar : avatar} alt="avatar" />}
-
+                                        <File>
+                                            {avatarLoading ? (
+                                                <div style={{ position: 'relative', display: 'inline-block' }}>
+                                                    <img src={customWepgImg || avatar} alt="avatar" />
+                                                    {avatarLoading && <MiniLoader className="absolute" />}
+                                                </div>
+                                            ) : (
+                                                <img src={customWepgImg || avatar} alt="avatar" />
+                                            )}
                                             <input type="file" onChange={handleChange} />
                                             <MdDriveFileRenameOutline className='renameicon' />
                                         </File>
+
 
                                         <div className="infotext">
                                             <h2>{data?.firstname} {data?.lastname}</h2>

@@ -13,7 +13,6 @@ function Home() {
     <Direction/>
     <StudentsComments/>
     <NewsPreview/>
-
     </>
   )
 }
