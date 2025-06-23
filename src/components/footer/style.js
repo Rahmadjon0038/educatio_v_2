@@ -1,57 +1,96 @@
 import styled from "styled-components";
 
 export const Container = styled.footer`
-  background-color: #111;
+  background: rgb(37, 38, 65);
   color: #eee;
-  padding: 30px 100px 30px;
-
+  padding: 40px 60px;
 `;
 
-
-export const Logo = styled.h2`
-  font-size: 26px;
-  font-weight: 700;
-  color: #fff;
+export const Logo = styled.div`
   display: flex;
   align-items: center;
+  gap: 15px;
+  font-size: 26px;
+  font-weight: bold;
   justify-content: center;
-  margin-bottom:30px;
-  img{
-    width: 84px;
+  margin-bottom: 30px;
+
+  img {
+    width: 70px;
   }
 `;
 
 export const Content = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: start;
-  margin: 0 100px;
+  flex-wrap: wrap;
+  gap: 40px;
+`;
 
-`
-export const Content_items = styled.div`
-  border: 2px solid white;
-  .icon{
-    font-size: 30px ;
+export const Section = styled.div`
+  flex: 1;
+  min-width: 250px;
+
+  h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 8px;
+    color: #fff;
+  }
+`;
+
+export const Item = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  .icon {
+    font-size: 18px;
+    color: #00b894;
   }
 
-  .item{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  p{
-    color: gray;
-  }
-`
+  a {
+    display: block;
+    color: #bbb;
+    font-size: 14px;
+    text-decoration: none;
 
+    &:hover {
+      color: #00b894;
+    }
+  }
 
+  span {
+    color: #ccc;
+  }
+
+  strong {
+    color: #fff;
+    display: block;
+  }
+`;
+
+export const SocialIcons = styled.div`
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
+  margin-top: 10px;
+
+  a {
+    color: #bbb;
+    transition: 0.3s ease;
+
+    &:hover {
+      color: #00b894;
+    }
+  }
+`;
 
 export const Copyright = styled.p`
   text-align: center;
   margin-top: 40px;
   font-size: 14px;
   color: #666;
-
 `;
-
