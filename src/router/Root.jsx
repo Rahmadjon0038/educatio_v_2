@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import Cookies from 'js-cookie'
@@ -13,8 +13,11 @@ import Courses from '../pages/Courses'
 import Tichers from '../pages/Tichers'
 import { useUser } from '../context/roleContext'
 import Footer from '../components/footer/Footer'
+import News from '../pages/News'
 
 function Root() {
+
+  const { pathname } = useLocation()
   const { role, setRole } = useUser()
 
   useEffect(() => {
@@ -25,7 +28,9 @@ function Root() {
 
     const cookieRole = Cookies.get('role') || 'guest'
     setRole(cookieRole)
-  }, [setRole])
+
+    window.scrollTo(0, 0)
+  }, [setRole, pathname])
 
   console.log(role)
 
@@ -41,6 +46,7 @@ function Root() {
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/cources' element={<Courses />} />
+            <Route path='/news' element={<News />} />
           </>
         )}
 
@@ -58,6 +64,8 @@ function Root() {
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/cources' element={<Courses />} />
+            <Route path='/news' element={<News />} />
+
           </>
         )}
 

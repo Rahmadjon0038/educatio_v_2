@@ -1,8 +1,9 @@
 import React from 'react'
+import Header from '../components/courses/header/Header'
 
 function Courses() {
   return (
-    <div>Courses</div>
+    <Header/>
   )
 }
 

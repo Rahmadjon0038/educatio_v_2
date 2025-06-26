@@ -15,6 +15,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import image from "../../../assets/regis.jpg";
 import { FaArrowRight } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 const newsData = [
   {
@@ -98,7 +99,7 @@ const NewsPreview = () => {
               </Info>
             </NewsCard>
           ))}
-          <Button >Barcha yangiliklar <FaArrowRight /></Button>
+          <NavLink to={'/news'}><Button >Barcha yangiliklar <FaArrowRight /></Button></NavLink>
         </div>
       </NewsGrid>
     </Container>

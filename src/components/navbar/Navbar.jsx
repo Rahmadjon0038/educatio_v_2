@@ -22,7 +22,7 @@ function Navbar() {
                 <NavLink className='a' to={'/'}>Bosh sahifa</NavLink>
                 <NavLink className='a' to={'/about'}>Biz haqimizda</NavLink>
                 <NavLink className='a' to={'/cources'}>Kurslarimiz</NavLink>
-                <NavLink className='a'>Yangiliklar</NavLink>
+                <NavLink className='a' to={'/news'}>Yangiliklar</NavLink>
                 {role == 'guest' ?
                     <div>
                         <Login />

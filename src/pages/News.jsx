@@ -1,8 +1,8 @@
-import React from 'react'
+import Header from '../components/news/Header'
 
 function News() {
   return (
-    <div>News</div>
+    <Header/>
   )
 }
 
