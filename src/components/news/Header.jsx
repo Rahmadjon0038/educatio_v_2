@@ -1,38 +1,103 @@
-import React from 'react'
-import { Newest, NewsTitle, Wrapper } from './style'
-import avatar from '../../assets/avatar.png'
+import React from 'react';
+import { Card, Newest, NewsCards, NewsTitle, Wrapper } from './style';
+import avatar from '../../assets/avatar.png';
 
+const news = [
+    {
+        id: 1,
+        title: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam repellendus vero dolorem exercitationem!",
+        desc: "  O’quv Markazimizda iyun oyidan boshlab oylikdan tashqari aniq belgilangan qo’shimcha BONUSLAR  tashkil qilinadi:",
+        img: "https://wallpapers.com/images/hd/hd-john-wick-and-his-dog-x3kdwy4i9sztuvo1.webp",
+        author: "admin",
+        time: "12 minut oldin"
+    },
+
+    {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/hd/john-wick-an-embodiment-of-raw-action-and-intensity-l5owt9n92nyuazex.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    },
+    {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/high/light-purple-jdm-car-zrbdy9b2tjgf6wqf.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    },
+    {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/hd/cool-cartoon-art-john-wick-hd-7vxt4v5s2mva2w8x.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    },
+
+
+
+
+    {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/high/men-phone-john-wick-jx681wai8sf1ojqh.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    }, {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/hd/best-aesthetic-hd-john-wick-still-dgtne5mx4fzois4r.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    },
+    
+];
 function Header() {
+    const latestNews = news[0];
+    const otherNews = news.slice(1);
+
     return (
         <Wrapper>
             <NewsTitle>
-                <h2>O'quv <span>markazimizda</span> bo'layotgan so'ngi yangiliklar bilan <br /> tanishib boring </h2>
+                <h2>
+                    O'quv <span>markazimizda</span> bo'layotgan so'ngi yangiliklar bilan <br /> tanishib boring
+                </h2>
             </NewsTitle>
 
             <Newest>
-                <img className='banner' src="https://wallpapers.com/images/hd/blue-aesthetic-john-wick-movie-scene-hd-x0pj3j5v7gveove1.webp" alt="img" />
+                <img className='banner' src={latestNews.img} alt="img" />
                 <div className='right'>
                     <div className='answers'>
                         <img src={avatar} className='avatar' alt="logo" />
-                        <p>admin. 12 minut oldin</p>
+                        <p>{latestNews.author}. {latestNews.time}</p>
                     </div>
-                    <h1 className='title'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam repellendus vero dolorem exercitationem!</h1>
-                    <p className='desc'>Good news 🙂
-                        O’quv Markazimizda iyun oyidan boshlab oylikdan tashqari aniq belgilangan qo’shimcha BONUSLAR  tashkil qilinadi:
-
-                        Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar o’quv markaz qabulxonasiga aniq taqdim etilishi kerak) o’qituvchilar quyidagi usulda taqdirlanadi:
-
-                        Umumiy stavka- 200 000 uzs +
-                        har bitta
-                        C1 natija uchun- 35 000
-                        B2 natija uchun - 25 000
-                        B1 natija uchun - 15 000
-
-                        va 8 ta va undan ortiq guruhlarda 100% dan 100% o’quvchilari sertifikat olsa yana + 100 000 uzs bonus.</p>
+                    <h1 className='title'>{latestNews.title}</h1>
+                    <p className='desc'>{latestNews.desc}</p>
                 </div>
             </Newest>
+
+            <NewsCards>
+                {otherNews.map(item => (
+                    <Card key={item.id}>
+                        <img className='banner' src={item.img} alt="img" />
+                        <div className='right'>
+                            <div className='answers'>
+                                <img src={avatar} className='avatar' alt="logo" />
+                                <p>{item.author}. {item.time}</p>
+                            </div>
+                            <h1 className='title'>{item.title}</h1>
+                            <p className='desc'>{item.desc}</p>
+                        </div>
+                    </Card>
+                ))}
+            </NewsCards>
         </Wrapper>
-    )
+    );
 }
 
-export default Header
+export default Header;
