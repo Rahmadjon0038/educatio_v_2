@@ -68,3 +68,5 @@ export const Card = styled.div`
 
 
 export const News = styled.div``;
+
+

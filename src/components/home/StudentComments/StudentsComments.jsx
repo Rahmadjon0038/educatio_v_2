@@ -1,5 +1,5 @@
-import React from "react";
 import { Container, Title, CardWrapper, Card, Avatar, Name, Comment } from "./style";
+import DefaultComponent from "../../DefaultComponent";
 
 const testimonials = [
   {
@@ -51,7 +51,7 @@ const Testimonials = () => {
   return (
     <Container  id="testimonials">
       <Title>Talabalarimiz fikrlari</Title>
-      <CardWrapper >
+     {testimonials.length ? <CardWrapper >
         {testimonials.map(({ id, name, image, comment, bgcolor }) => (
           <Card key={id} bgcolor={bgcolor}>
             <h1>‘‘</h1>
@@ -62,7 +62,7 @@ const Testimonials = () => {
             <Avatar src={image} alt={name} />
           </Card>
         ))}
-      </CardWrapper>
+      </CardWrapper>:<DefaultComponent text={'Fikrlar xozircha mavjud emas'}/>}
     </Container>
   );
 };

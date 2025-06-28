@@ -49,7 +49,6 @@ export default function HomeHeader() {
           <button>Bizga qo'shiling</button>
         </ContainerItem>
         <ContainerItem data-aos='fade-left' data-aos-duration='400'>
-          <p>salomat</p>
           <img src={homeImg} alt="home img" />
         </ContainerItem>
       </Container>

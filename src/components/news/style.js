@@ -42,6 +42,7 @@ export const NewsTitle = styled.div`
   text-align: center;
   line-height: 40px;
 
+ 
   span {
     color: #812333;
     font-weight: bold;
@@ -76,6 +77,11 @@ export const Newest = styled.div`
     .right {
       padding: 0 20px;
     }
+  }
+    .title {
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10px;
   }
 `;
 

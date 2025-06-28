@@ -55,6 +55,14 @@ const news = [
         author: "admin",
         time: "1 soat oldin"
     },
+     {
+        id: 2,
+        title: "Yana bir yangilik bor...",
+        desc: "  Bir sanada 2 va undan ortiq o’quvchilarini sertifikat (B1, B2, C1) natija qildirgan(sertifikatlar ",
+        img: "https://wallpapers.com/images/hd/hd-john-wick-movie-poster-qe5atuabqq91x23i.webp",
+        author: "admin",
+        time: "1 soat oldin"
+    },
     
 ];
 function Header() {
@@ -76,7 +84,7 @@ function Header() {
                         <img src={avatar} className='avatar' alt="logo" />
                         <p>{latestNews.author}. {latestNews.time}</p>
                     </div>
-                    <h1 className='title'>{latestNews.title}</h1>
+                    <h1 className='title newTitle'>{latestNews.title}</h1>
                     <p className='desc'>{latestNews.desc}</p>
                 </div>
             </Newest>
