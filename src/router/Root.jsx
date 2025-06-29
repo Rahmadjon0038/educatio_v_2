@@ -18,6 +18,9 @@ import Admin from '../pages/Admin'
 import Statistik from '../components/adminDashboard/statistik/Statistik'
 import AdminDirection from '../components/adminDashboard/derection/AdminDirection'
 import AdminSidebar from '../components/adminDashboard/sidebar/AdminSidebar'
+import AdminHome from '../components/adminDashboard/adminHome/AdminHome'
+import Adminusers from '../components/adminDashboard/users/Adminusers'
+import AdminComment from '../components/adminDashboard/comments/AdminComment'
 
 function Root() {
 
@@ -75,16 +78,17 @@ function Root() {
             <Route path='/about' element={<About />} />
             <Route path='/cources' element={<Courses />} />
             <Route path='/news' element={<News />} />
-
             <Route path="/admin" element={<Admin />}>
-              <Route index element={<h1>default page</h1>} />
+              <Route index element={<AdminHome/>} />
               <Route path="statistik" element={<Statistik />} />
               <Route path="courses" element={<AdminDirection />} />
+              <Route path="users" element={<Adminusers />} />
+              <Route path="comments" element={<AdminComment />} />
+              
               {/* boshqa admin sahifalarni ham shu yerga qo‘sh */}
             </Route>
           </>
         )
-
         }
 
         {role === 'guest' && (

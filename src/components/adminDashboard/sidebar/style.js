@@ -24,10 +24,11 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   font-size: 16px;
   transition: 0.2s ease-in-out;
-  color: rgb(20, 115, 255);
   display: flex;
+  color: #333;
   gap: 10px;
   &:hover {
-    color: #38bdf8; /* Tailwind-yozilgan "sky-400" rang */
+     color: rgb(20, 115, 255);
+
   }
 `;

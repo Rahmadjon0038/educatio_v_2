@@ -16,19 +16,16 @@ function AdminSidebar() {
                     <SidebarLink to={'/admin'}><MdDashboard /> Dashboard</SidebarLink>
                 </SidebarItem>
                 {/* <SidebarItem>
-                    <SidebarLink to="/admin/statistik">📊 Statistik</SidebarLink>
+                    <SidebarLink to="/admin/courses"><FaUsersLine/> Tiachers</SidebarLink>
                 </SidebarItem> */}
                 <SidebarItem>
-                    <SidebarLink to="/admin/courses"><FaUsersLine /> Tiachers</SidebarLink>
-                </SidebarItem>
-                <SidebarItem>
-                    <SidebarLink to="/admin/statistik"><FaUsersViewfinder /> Foydalanuvchilar</SidebarLink>
+                    <SidebarLink to="/admin/users"><FaUsersViewfinder /> Foydalanuvchilar</SidebarLink>
                 </SidebarItem>
                 <SidebarItem>
                     <SidebarLink to="/admin/courses"><FaBook /> Kurslarimiz</SidebarLink>
                 </SidebarItem>
                 <SidebarItem>
-                    <SidebarLink to="/admin/courses"><FaCommentDots /> Kommentlar</SidebarLink>
+                    <SidebarLink to="/admin/comments"><FaCommentDots /> Kommentlar</SidebarLink>
                 </SidebarItem>
                 {role != 'guest' && <UserProfile />}
                 {/* Boshqa menyular */}
