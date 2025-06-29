@@ -11,14 +11,14 @@ import { UserProvider } from './context/roleContext'
 const queryclinet = new QueryClient();
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserProvider>
-      <QueryClientProvider client={queryclinet}>
+    <QueryClientProvider client={queryclinet}>
+      <UserProvider>
         <BrowserRouter>
 
           <ToastContainer position="bottom-right" />
           <Root />
         </BrowserRouter>
-      </QueryClientProvider>
-    </UserProvider>
+      </UserProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )

@@ -14,6 +14,10 @@ import Tichers from '../pages/Tichers'
 import { useUser } from '../context/roleContext'
 import Footer from '../components/footer/Footer'
 import News from '../pages/News'
+import Admin from '../pages/Admin'
+import Statistik from '../components/adminDashboard/statistik/Statistik'
+import AdminDirection from '../components/adminDashboard/derection/AdminDirection'
+import AdminSidebar from '../components/adminDashboard/sidebar/AdminSidebar'
 
 function Root() {
 
@@ -34,11 +38,13 @@ function Root() {
 
   console.log(role)
 
-  const showNavbar = role === 'guest' || role === 'user'
+  const showNavbar = role === 'guest' || role === 'user' || role == 'ticher' || role == 'admin'
+  const isAdminPage = role === 'admin' && pathname.startsWith('/admin');
 
   return (
     <>
-      {showNavbar && <Navbar />}
+      {showNavbar && !isAdminPage && <Navbar />}
+
       <Routes>
         {role === 'user' && (
           <>
@@ -52,15 +58,8 @@ function Root() {
 
         {role === 'ticher' && (
           <>
-            <Route path='/home' element={<Navigate to='/' />} />
-            <Route path='/' element={<Navigate to='/tichers' />} />
-            <Route path='/tichers' element={<Tichers />} />
-          </>
-        )}
-
-        {role === 'guest' && (
-          <>
             <Route path='/' element={<Navigate to='/home' />} />
+            <Route path='/tichers' element={<Tichers />} />
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/cources' element={<Courses />} />
@@ -69,9 +68,38 @@ function Root() {
           </>
         )}
 
+        {role == 'admin' && (
+          <>
+            <Route path='/' element={<Navigate to='/home' />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/cources' element={<Courses />} />
+            <Route path='/news' element={<News />} />
+
+            <Route path="/admin" element={<Admin />}>
+              <Route index element={<h1>default page</h1>} />
+              <Route path="statistik" element={<Statistik />} />
+              <Route path="courses" element={<AdminDirection />} />
+              {/* boshqa admin sahifalarni ham shu yerga qo‘sh */}
+            </Route>
+          </>
+        )
+
+        }
+
+        {role === 'guest' && (
+          <>
+            <Route path='/' element={<Navigate to='/home' />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/cources' element={<Courses />} />
+            <Route path='/news' element={<News />} />
+          </>
+        )}
+
         <Route path='*' element={<NotFound />} />
       </Routes>
-      {showNavbar && <Footer />}
+      {showNavbar && !isAdminPage && <Footer />}
     </>
   )
 }

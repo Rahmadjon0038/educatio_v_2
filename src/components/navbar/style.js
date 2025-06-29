@@ -21,7 +21,7 @@ export const Logo = styled.div`
   align-items: center;
 
   h1{
-    font-size: 30px;
+    font-size: 24px;
   }
   .cube{
     border: 3px solid #00FFF0;
@@ -31,7 +31,7 @@ export const Logo = styled.div`
     transform: rotate(45deg);
   }
   img{
-    width: 100px;
+    width: 80px;
   }
 `
 export const Navigate = styled.div`

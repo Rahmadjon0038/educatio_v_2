@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useGetuser } from '../hooks/users/useUsers'
 import Cookies from 'js-cookie'
+import TichersComponent from '../components/tichers/Tichers'
 function Tichers() {
     const { isLoading, data } = useGetuser(Cookies.get('userid'))
     console.log(isLoading)
@@ -8,9 +9,7 @@ function Tichers() {
   
 
     return (
-        <div>
-          <h1>Profilega hush kelibsiz</h1>
-        </div>
+        <TichersComponent/>
     )
 }
 

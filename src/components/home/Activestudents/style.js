@@ -30,6 +30,7 @@ export const Card = styled.div`
         height: 200px;
         width: 90%;
         object-fit: cover;
+        filter: drop-shadow(0 0 2px #812333);
     }
     h3{
         margin: 10px 0px;

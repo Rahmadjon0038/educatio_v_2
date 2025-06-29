@@ -4,17 +4,17 @@ import { Container, CreateAt, CustomInput, File, Glass, ImgContainer, Logoutbtn,
 import { FaAngleDown } from "react-icons/fa";
 import { Box, Modal } from '@mui/material';
 import Loader from '../loader/Loader';
-import { useGetuser, useUpdateUser, useUpdateUserAvatar } from '../../hooks/users/useUsers';
+import { useUpdateUser, useUpdateUserAvatar } from '../../hooks/users/useUsers';
 import Cookies from 'js-cookie'
 import { useUser } from '../../context/roleContext';
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import MiniLoader from '../loader/miniLoader/MiniLoader';
 import { FaUserSlash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const id = Cookies.get('userid');
-
-    const { role, setRole } = useUser()
+    const { role, setRole, data, isLoading, error } = useUser()
 
     const [edit, setEdit] = useState(true)
     const [open, setOpen] = useState(false);
@@ -23,7 +23,6 @@ function UserProfile() {
         setEdit(true)
     };
     const handleClose = () => setOpen(false);
-
 
     const style = {
         position: 'absolute',
@@ -39,8 +38,11 @@ function UserProfile() {
         overflow: "hidden"
     };
 
-    const { data, isLoading, error } = useGetuser(id ?? null);
-    const customWepgImg = data?.avatar.replace('/upload', "/upload/f_webp,q_auto")
+
+    const customWepgImg = data?.avatar
+        ? data.avatar.replace('/upload', '/upload/f_webp,q_auto')
+        : '';
+
 
     const updateMuattion = useUpdateUser(id)
     const [userUpdate, setUserUpdate] = useState({
@@ -73,11 +75,13 @@ function UserProfile() {
         })
     }
 
+    const nav = useNavigate('')
     const logout = () => {
         Cookies.remove('role')
         Cookies.remove('token');
         Cookies.remove('userid')
         setRole('guest')
+        nav('/')
     }
 
     if (isLoading) {
