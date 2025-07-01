@@ -116,9 +116,9 @@ export const useUpdateUserAvatar = (id) => {
     const queryclinet = useQueryClient();
     const updateMuattionAvatar = useMutation({
         mutationFn: updateUserAvatar,
-        onSuccess: (data,vars) => {
+        onSuccess: (data, vars) => {
             notify('ok', data.message)
-            if(vars.onSuccess){
+            if (vars.onSuccess) {
                 vars.onSuccess(data)
             }
             queryclinet.invalidateQueries(['user', id]);
@@ -131,4 +131,17 @@ export const useUpdateUserAvatar = (id) => {
     return updateMuattionAvatar
 }
 
+// -------------------------- GET ALL USERS -----------------------
 
+const getallusers = async () => {
+    const result = await instance.get('/api/users/allusers')
+    return result.data
+}
+
+export const useGetAllUsers = () => {
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['users'],
+        queryFn: getallusers
+    })
+    return { data, isLoading, error }
+}

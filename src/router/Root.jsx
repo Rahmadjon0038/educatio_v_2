@@ -33,10 +33,9 @@ function Root() {
       once: true,
     })
 
+    window.scrollTo(0, 0)
     const cookieRole = Cookies.get('role') || 'guest'
     setRole(cookieRole)
-
-    window.scrollTo(0, 0)
   }, [setRole, pathname])
 
   console.log(role)

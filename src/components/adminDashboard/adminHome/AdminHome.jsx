@@ -51,7 +51,7 @@ function AdminHome() {
             </Statistik>
             <Mycharts>
                 <MyPiechart >
-                    <h4>Bu oy qo'shilganlar o'quvchilar</h4>
+                    <h4>Bu oy qo'shilganlar o'quvchilar 154 ta</h4>
                     <PieChart
                         series={[
                             {
