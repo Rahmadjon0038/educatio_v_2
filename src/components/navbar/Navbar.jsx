@@ -41,7 +41,7 @@ function Navbar() {
                             <p>{data?.username}</p>
                             <FaAngleDown />
                         </ImgContainer>
-                    </NavLink> : role == 'ticher' ? <NavLink to={'/tichers'}  style={{ color: 'white', textDecoration: 'none' }}>
+                    </NavLink> : role == 'teacher' ? <NavLink to={'/teachers'}  style={{ color: 'white', textDecoration: 'none' }}>
                         <ImgContainer >
                             <img src={customWepgImg || avatar} alt="avatar" />
                             <p>{data?.username}</p>

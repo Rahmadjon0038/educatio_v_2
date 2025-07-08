@@ -2,13 +2,13 @@ import React from 'react'
 import { Container } from './style'
 import UserProfile from '../usersProfile/UserProfile'
 
-function TichersComponent() {
+function TeachersComponent() {
   return (
     <div>
-      <Container>Tichers</Container>
+      <Container>teachers</Container>
       <UserProfile />
     </div>
   )
 }
 
-export default TichersComponent
+export default TeachersComponent

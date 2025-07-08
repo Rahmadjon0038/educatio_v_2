@@ -10,7 +10,7 @@ import NotFound from '../components/Notound'
 import Home from '../pages/Home'
 import About from '../pages/About'
 import Courses from '../pages/Courses'
-import Tichers from '../pages/Tichers'
+import Teacher from '../pages/Tichers'
 import { useUser } from '../context/roleContext'
 import Footer from '../components/footer/Footer'
 import News from '../pages/News'
@@ -40,7 +40,7 @@ function Root() {
 
   console.log(role)
 
-  const showNavbar = role === 'guest' || role === 'user' || role == 'ticher' || role == 'admin'
+  const showNavbar = role === 'guest' || role === 'user' || role == 'teacher' || role == 'admin'
   const isAdminPage = role === 'admin' && pathname.startsWith('/admin');
 
   return (
@@ -58,10 +58,10 @@ function Root() {
           </>
         )}
 
-        {role === 'ticher' && (
+        {role === 'teacher' && (
           <>
             <Route path='/' element={<Navigate to='/home' />} />
-            <Route path='/tichers' element={<Tichers />} />
+            <Route path='/teachers' element={<Teacher />} />
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/cources' element={<Courses />} />

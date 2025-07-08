@@ -50,7 +50,7 @@ export default function Login() {
         if (loginData?.password.length >= 6) {
             mutationLogin.mutate(loginData, {
                 onSuccess: (data) => {
-                    // navigate('/tichers')
+                    // navigate('/teachers')
                     setRole(data.role)
                     setOpen(false)
                 }
