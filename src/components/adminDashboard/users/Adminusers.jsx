@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, ContainerItem, ContainerItemDesc, ModalButtons, ModalDesc, UsersData } from './style'
+import { Container, ContainerItem, ContainerItemDesc, CustomSelect, ModalButtons, ModalDesc, UsersData } from './style'
 import { useUser } from '../../../context/roleContext'
 import { AiOutlineUserDelete } from "react-icons/ai";
 
@@ -13,6 +13,8 @@ import Modal from '@mui/material/Modal';
 import { getNotify } from '../../../hooks/notify';
 import { useGetAllUsers } from '../../../hooks/users/useUsers';
 
+import defaultAvatar from '../../../assets/avatar.png'
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -20,7 +22,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  boxShadow: 24,
   borderRadius: "4px",
   p: 2,
   outline: 'none',
@@ -39,8 +40,9 @@ function Adminusers() {
   const [roleValue, setRoleValue] = useState();
 
 
-  const handleRoleChange = (event) => {
-    console.log(event.target.value)
+  const handleRoleChange = (userid, values) => {
+    console.log(values)
+    console.log(userid)
   };
 
   const handleDelete = () => {
@@ -48,43 +50,54 @@ function Adminusers() {
     handleClose()
   }
 
-
-
   return (
     <Container>
       <ContainerItem>
         {allusers?.map((item) => (
           <UsersData key={item.id}>
             <div className='info'>
-              <img src={item?.avatar} alt="img" />
+              <img loading='lazy' src={item.avatar ? item?.avatar.replace('/upload/', '/upload/f_auto,q_auto/') : defaultAvatar} alt="img" />
               <strong>{item?.username} {item?.lastname}</strong>
               <p>{item?.email}</p>
             </div>
-
             <div className='info'>
-              <label htmlFor="">
-                {item.role}
-              <select name="" id="" onChange={handleRoleChange}>
-                <option value={item?.id}>admin</option>
-                <option value={item?.id}>user</option>
-                <option value={item?.id}>ticher</option>
-              </select>
-              </label>
-
+              <CustomSelect onChange={(e) => handleRoleChange(item.id, e.target.value)} name="" id="">
+                <option value={item?.role}>{item?.role}</option>
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+                <option value="teacher">teacher</option>
+              </CustomSelect>
 
               <Tooltip title="Delete" placement='right'>
                 <AiOutlineUserDelete onClick={handleOpen} className='userDelete' />
               </Tooltip>
-
             </div>
 
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-describedby="modal-modal-description"
+              BackdropProps={{
+                style: {
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)' // 0.2 juda engil qoramtir fon
+                }
+              }}
+            >
+              <Box
+                sx={style}
+              >
+                <ModalDesc>
+                  Rostdanham foydalanuvchini o'chirib tashlamoqchimisz
+                  <ModalButtons onClick={handleDelete}>Ha</ModalButtons>
+                </ModalDesc>
+              </Box>
+            </Modal>
 
           </UsersData>
         ))}
 
 
       </ContainerItem>
-
       <ContainerItemDesc>
         <p>
           Platformamizda uchta asosiy rol mavjud: <strong>Admin</strong>, <strong>Teacher</strong> va <strong>User</strong>.

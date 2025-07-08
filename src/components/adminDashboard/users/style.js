@@ -16,9 +16,6 @@ export const ContainerItemDesc = styled.div`
   margin-bottom: 30px;
   transition: all 0.3s ease;
 
-  &:hover {
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
-  }
 
   p {
     font-size: 18px;
@@ -103,10 +100,27 @@ export const ModalDesc = styled.div`
     margin-bottom: 20px;
 `
 export const ModalButtons = styled.button`
-    padding:5px 20px;
+    padding:8px 30px;
     border: none;
     outline: none;
     border-radius: 4px;
-    margin-right: 20px;
     cursor: pointer;
+    display: block;
+    border: 1px solid red;
+    background-color: white;
+    margin: 10px auto 0px auto;
+
+    &:hover{
+      color: white;
+      background-color: red;
+    }
+`
+export const CustomSelect = styled.select`
+  border: none;
+  outline: none;
+  padding: 6px;
+
+  option{
+    border: none;
+  }
 `

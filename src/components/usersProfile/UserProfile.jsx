@@ -11,11 +11,11 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import MiniLoader from '../loader/miniLoader/MiniLoader';
 import { FaUserSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import { getNotify } from '../../hooks/notify';
 function UserProfile() {
     const id = Cookies.get('userid');
     const { role, setRole, data, isLoading, error } = useUser()
-
+    const notify = getNotify();
     const [edit, setEdit] = useState(true)
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -71,6 +71,9 @@ function UserProfile() {
         updateMuattionAvatar.mutate({
             id, formdata, onSuccess: (data) => {
                 setAvatarLoading(false)
+            },
+            onError: (err) => {
+                notify('err', "rasm formati to'gri kelmadi iltimos boshqa rasm yuklang yoki ram formatini o'zgartiring")
             }
         })
     }

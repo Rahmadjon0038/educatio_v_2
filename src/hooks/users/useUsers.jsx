@@ -5,7 +5,6 @@ import { getNotify } from "../notify";
 const notify = getNotify()
 // ------------------Login -------------------
 const login = async (data) => {
-    console.log('logindara', data)
     const response = await instance.post('api/auth/login', data)
     return response.data
 }
@@ -123,8 +122,9 @@ export const useUpdateUserAvatar = (id) => {
             }
             queryclinet.invalidateQueries(['user', id]);
         },
-        onError: (err) => {
-            console.log(err)
+        onError: (err,vars) => {
+            vars.onError(err)
+            // console.log(err)
         }
     })
 
