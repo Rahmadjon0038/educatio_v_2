@@ -38,7 +38,6 @@ function Root() {
     setRole(cookieRole)
   }, [setRole, pathname])
 
-  console.log(role)
 
   const showNavbar = role === 'guest' || role === 'user' || role == 'teacher' || role == 'admin'
   const isAdminPage = role === 'admin' && pathname.startsWith('/admin');

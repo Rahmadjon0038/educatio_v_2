@@ -58,7 +58,7 @@ export const useRegister = () => {
 // -----   GET USER ----------------------
 
 const getUser = async (id) => {
-    const response = await instance.get(`/api/users/${id}`)
+    const response = await instance.get(`/api/users/me/${id}`)
     return response.data
 }
 
@@ -78,7 +78,7 @@ const updateUser = async (data) => {
     let { id, userUpdate } = data
     console.log(id)
     console.log(userUpdate)
-    const response = await instance.patch(`/api/users/${id}`, userUpdate)
+    const response = await instance.patch(`/api/users/upadteuser/${id}`, userUpdate)
     return response.data
 }
 
@@ -101,7 +101,7 @@ export const useUpdateUser = (id) => {
 const updateUserAvatar = async (data) => {
     let { id, formdata } = data;
 
-    const response = await instance.patch(`/api/users/${id}`, formdata, {
+    const response = await instance.patch(`/api/users/upadteuser/${id}`, formdata, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }
@@ -122,7 +122,7 @@ export const useUpdateUserAvatar = (id) => {
             }
             queryclinet.invalidateQueries(['user', id]);
         },
-        onError: (err,vars) => {
+        onError: (err, vars) => {
             vars.onError(err)
             // console.log(err)
         }
@@ -144,4 +144,53 @@ export const useGetAllUsers = () => {
         queryFn: getallusers
     })
     return { data, isLoading, error }
+}
+
+// -------------------------------   admin role update --------------------------
+
+const updateRole = async (data) => {
+    let { id, role } = data
+    const response = await instance.patch(`/api/users/role/${id}`, { role})
+    return response.data
+}
+
+export const useupdateRole = (id) => {
+    const queryclinet = useQueryClient();
+    const updateRoleMuattion = useMutation({
+        mutationFn: updateRole,
+        onSuccess: (data) => {
+            console.log(data)
+            notify('ok', data.message)
+            queryclinet.invalidateQueries(['user', id]);
+        },
+        onError: (err) => {
+            console.log(err)
+        }
+    })
+
+    return updateRoleMuattion
+}
+
+// -------------------------------   admin delete user --------------------------
+
+const deleteUser = async (id) => {
+    const response = await instance.delete(`/api/users/delete/${id}`)
+    return response.data
+}
+
+export const usedeleteUser = (id) => {
+    const queryclinet = useQueryClient();
+    const deleteUserMuattion = useMutation({
+        mutationFn: deleteUser,
+        onSuccess: (data) => {
+            console.log(data)
+            notify('ok', data.message)
+            queryclinet.invalidateQueries(['user', id]);
+        },
+        onError: (err) => {
+            console.log(err)
+        }
+    })
+
+    return deleteUserMuattion
 }

@@ -11,7 +11,7 @@ import Select from '@mui/material/Select';
 import Tooltip from '@mui/material/Tooltip';
 import Modal from '@mui/material/Modal';
 import { getNotify } from '../../../hooks/notify';
-import { useGetAllUsers } from '../../../hooks/users/useUsers';
+import { usedeleteUser, useGetAllUsers, useupdateRole } from '../../../hooks/users/useUsers';
 
 import defaultAvatar from '../../../assets/avatar.png'
 
@@ -33,6 +33,9 @@ function Adminusers() {
   const { data: allusers, isLoading: alluserLoading, error: allusersError } = useGetAllUsers();
   const { role, setRole, data, isLoading, error } = useUser();
 
+  const updateRoleMuattion = useupdateRole()  //role update
+  const deleteUserMuattion = usedeleteUser()  //role update
+
   const notify = getNotify();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,13 +43,12 @@ function Adminusers() {
   const [roleValue, setRoleValue] = useState();
 
 
-  const handleRoleChange = (userid, values) => {
-    console.log(values)
-    console.log(userid)
+  const handleRoleChange = (id, role) => {
+    updateRoleMuattion.mutate({ id, role })
   };
 
-  const handleDelete = () => {
-    notify('ok', 'Foydalanuvchi mofaqqiyatli o\'chirildi')
+  const handleDelete = (id) => {
+    deleteUserMuattion.mutate(id)
     handleClose()
   }
 
@@ -88,7 +90,7 @@ function Adminusers() {
               >
                 <ModalDesc>
                   Rostdanham foydalanuvchini o'chirib tashlamoqchimisz
-                  <ModalButtons onClick={handleDelete}>Ha</ModalButtons>
+                  <ModalButtons onClick={() => handleDelete(item?.id)}>Ha</ModalButtons>
                 </ModalDesc>
               </Box>
             </Modal>

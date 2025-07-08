@@ -7,7 +7,6 @@ import { useUser } from '../../../context/roleContext';
 
 function AdminSidebar() {
     const { role, setRole } = useUser()
-    console.log(role)
     return (
         <SidebarContainer>
             <SidebarTitle>Admin Panel</SidebarTitle>
